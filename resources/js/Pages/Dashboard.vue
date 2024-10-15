@@ -14,9 +14,17 @@ const submit = () =>{
     formData.append('firstname',form.firstname);
     formData.append('lastname',form.lastname);
 
-    form.post(route(),{})
+    form.post(route('StudentInfo.store'),{
+        forceFormData:true,
+            onSuccess: (response) => {
+                console.log('Success:',response);
+            },
+            onError: (errors) => {
+                console.log('Error response:', errors);  // Check if there's validation or other issues
+            }
+    });
 
-}
+};
 </script>
 
 <template>
