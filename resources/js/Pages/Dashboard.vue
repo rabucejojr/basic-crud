@@ -1,20 +1,20 @@
 <script setup>
+import NavLink from '@/Components/NavLink.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
-
 const form =useForm({
-firstname:'',
-lastname:'',
+fname:'',
+lname:'',
 });
 
 const submit = () =>{
     console.log('submit');
     const formData = new FormData();
-    formData.append('firstname',form.firstname);
-    formData.append('lastname',form.lastname);
+    formData.append('fname',form.fname);
+    formData.append('lname',form.lname);
 
-    form.post(route('StudentInfo.store'),{
+    form.post(route('students.store'),{
         forceFormData:true,
             onSuccess: (response) => {
                 console.log('Success:',response);
@@ -46,10 +46,10 @@ const submit = () =>{
                 >
                <form @submit.prevent="submit">
                     <div class="flex flex-col w-1/5 justify-center align-middle">
-                        <label for="firstname">First Name</label>
-                        <input type="text" name="firstname" id="firstname">
-                        <label for="firstname">Last Name</label>
-                        <input type="text" name="lastname" id="lastname">
+                        <label for="fname">First Name</label>
+                        <input type="text" name="fname" id="fname" v-model="form.fname">
+                        <label for="lname">Last Name</label>
+                        <input type="text" name="lname" id="lname" v-model="form.lname">
                         <PrimaryButton class="m-2">
                             Submit
                         </PrimaryButton>
