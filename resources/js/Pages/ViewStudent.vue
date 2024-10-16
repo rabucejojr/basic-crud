@@ -13,17 +13,15 @@ defineProps({
 const form = useForm({});
 
 const delete_student =(id)=>{
-    if (confirm('Are you sure you want to delete this student?')) {
         form.delete(`students/${id}`, {
             onSuccess: () => {
-                alert('Student deleted successfully');
+                console.log('deleted successfully');
             },
             onError: (errors) => {
                 console.error(errors);
-                alert('Failed to delete the student');
+                console.log('failed to delete');
             }
         });
-    }
 };
 const edit_file = (id)=>{
     console.log(id);
